@@ -10,5 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>ex06.jsp</h1>
+<%
+Object o = session.getAttribute("actor");
+String s = (String) o;
+%>
+
+<h1><%= s %></h1>
 </body>
 </html>

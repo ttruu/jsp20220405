@@ -10,11 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ex05.jsp</h1>
-<%
-// session 사용 가능
-// session : HttpSession
-session.setAttribute("actor", "leeminho");
-%>
+<h1>ex10.jsp</h1>
+<h1>session id : <%= session.getId() %></h1>
 </body>
 </html>

@@ -10,11 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ex05.jsp</h1>
+<h1>ex07.jsp</h1>
+<p>session에 actor 다시 셋팅</p>
+<!-- 이민호에 윤여정을 덮어씌우게 됨 -->
 <%
-// session 사용 가능
-// session : HttpSession
-session.setAttribute("actor", "leeminho");
+session.setAttribute("actor", "윤여정");
 %>
 </body>
 </html>

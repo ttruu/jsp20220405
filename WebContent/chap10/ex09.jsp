@@ -10,11 +10,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ex05.jsp</h1>
+<h1>ex09.jsp</h1>
+<%-- 
+1. ex08.jsp 먼저 요청
+2. ex09.jsp 두번째 요청 --%>
 <%
-// session 사용 가능
-// session : HttpSession
-session.setAttribute("actor", "leeminho");
+List<String> list = (List<String>) session.getAttribute("names");
+
+out.print("<ul>");
+for(String name : list) {
+	out.print("<li>");
+	out.print(name); // list item 3개 출력
+	out.print("</li>");
+}
+out.print("</ul>");
 %>
 </body>
 </html>

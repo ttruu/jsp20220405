@@ -10,11 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ex05.jsp</h1>
-<%
-// session 사용 가능
-// session : HttpSession
-session.setAttribute("actor", "leeminho");
-%>
+	<h1>session time out</h1>
+	<h2>id : <%= session.getId() %></h2>
+	<%
+	Date date = new Date(session.getLastAccessedTime());
+	java.text.DateFormat formatter = new java.text.SimpleDateFormat("HH:mm:ss.SSS");
+	formatter.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+	String dateFormatted = formatter.format(date);
+	%>
+	<h2>마지막접근 : <%= dateFormatted %></h2>
 </body>
 </html>

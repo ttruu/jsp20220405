@@ -12,22 +12,21 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>INFO</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<table width="100%" border="1" cellpadding="0" cellspacing="0">
-		<tr>
-			<td>제품번호</td>
-			<td>XXXXXXX</td>
-		</tr>
-		<tr>
-			<td>가격</td>
-			<td>10,000</td>
-		</tr>
-	</table>
+	<h1>ex03.jsp</h1>
+	<a href="ex04session-invalidate.jsp">세션 종료</a>
+	<%
+	String s = (String) pageContext.getAttribute("movie");
+	String u = (String) request.getAttribute("song");
+	String v = (String) session.getAttribute("group");
+	String t = (String) application.getAttribute("actor");
+	%>
 
-	<jsp:include page="0707infoSub.jsp" flush="false">
-		<jsp:param name="type" value="A" />
-	</jsp:include>
+	<p><%=s%></p>
+	<p><%=u%></p>
+	<p><%=v%></p>
+	<p><%=t%></p>
 </body>
 </html>

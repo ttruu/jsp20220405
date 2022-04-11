@@ -10,11 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ex05.jsp</h1>
+<h1>ex08.jsp</h1>
 <%
-// session 사용 가능
-// session : HttpSession
-session.setAttribute("actor", "leeminho");
+List<String> list = new ArrayList<>();
+list.add("jimin");
+list.add("jin");
+list.add("rm");
+
+session.setAttribute("names", list);
 %>
 </body>
 </html>

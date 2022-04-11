@@ -10,11 +10,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ex05.jsp</h1>
-<%
-// session 사용 가능
-// session : HttpSession
-session.setAttribute("actor", "leeminho");
-%>
+include 전 name 파라미터 값 : <%= request.getParameter("name") %>
+
+<hr />
+
+<jsp:include page="0709body_sub.jsp" flush="false">
+<jsp:param name="name" value="최범균"/>
+</jsp:include>
+
+<hr />
+
+include 후 name 파라미터 값 : <%= request.getParameter("name") %>
+
 </body>
 </html>

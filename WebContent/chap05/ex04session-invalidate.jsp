@@ -10,11 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ex05.jsp</h1>
 <%
-// session 사용 가능
-// session : HttpSession
-session.setAttribute("actor", "leeminho");
+session.invalidate();
 %>
+
+<a href="ex03.jsp">3번 파일로 돌아가기</a>
 </body>
 </html>
