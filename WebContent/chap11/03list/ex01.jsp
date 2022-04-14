@@ -21,13 +21,13 @@ pageContext.setAttribute("list1", list);
 %>
 <%
 List<String> l = (List<String>) pageContext.getAttribute("list1");
-
+// java 형식대로 얻는 법 
 %>
 <p><%= l.get(0) %></p>
 <p><%= l.get(1) %></p>
 
 <hr />
-
+<!-- el 사용법 -->
 <p>${list1[0]}</p>
 <p>${list1[1]}</p>
 

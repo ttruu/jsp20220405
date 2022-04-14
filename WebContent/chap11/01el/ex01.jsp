@@ -14,15 +14,21 @@
 </head>
 <body>
 	<h1>EL (Expression Language)</h1>
+	
 	<p>작성법 : \${attribute }</p>
+	
 	<%
 	pageContext.setAttribute("pageAttr1", "PAGE ATTRIBUTE1");
 	%>
+	
 	<p>
 	<%= pageContext.getAttribute("pageAttr1") %>
 	</p>
+	
 	<p>
 	${pageAttr1 }
 	</p>
+	
+	
 </body>
 </html>
