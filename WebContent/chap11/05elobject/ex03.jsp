@@ -9,29 +9,17 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
-<h1>나이별 추천 영화</h1>
-<form action="ex02.jsp">
-나이 : <input type="number" name="age" />
-<input type="submit" value="영화 추천받기" />
-</form>
-
-<c:choose>
-	<c:when test="${param.age >= 20 }">
-		<h1>영화 '데드풀' 추천</h1>
-	</c:when>
-	<c:when test="${param.age >= 12 }">
-		<h1>영화 '어벤져스' 추천</h1>
-	</c:when>
-	<c:when test="${param.age >= 4 }">
-		<h1>영화 '토이스토리' 추천</h1>
-	</c:when>
-	<c:otherwise>n
-		<h1 class="text-warning">적절한 나이를 입력해주세요</h1>
-	</c:otherwise>
-</c:choose>
+	<%-- 주소창에 적절한 쿼리스트링 작성 --%>
+	<%-- http://localhost:8080/jsp20220405/chap11/05elobject/ex03.jsp
+	?season=spring&email=hello@gmail.com&song=butter  --%>
+	
+	<p>${param.season }</p>
+	<p>${param.email }</p>
+	<p>${param.song }</p>
 </body>
 </html>

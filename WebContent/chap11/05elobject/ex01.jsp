@@ -12,6 +12,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>el 기본 객체 11개</h1> 
+	<h2>책 254page 표</h2>
+	 
+	 <h2>11개의 기본객체를 el에서 사용하면 4개 영역 attribute에서 찾지 않음</h2>
+	 <h2>거의 map 객체임</h2>
+	 
 </body>
-</html>
+ </html>

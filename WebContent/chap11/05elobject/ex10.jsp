@@ -9,29 +9,19 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
-<h1>나이별 추천 영화</h1>
-<form action="ex02.jsp">
-나이 : <input type="number" name="age" />
-<input type="submit" value="영화 추천받기" />
-</form>
-
-<c:choose>
-	<c:when test="${param.age >= 20 }">
-		<h1>영화 '데드풀' 추천</h1>
-	</c:when>
-	<c:when test="${param.age >= 12 }">
-		<h1>영화 '어벤져스' 추천</h1>
-	</c:when>
-	<c:when test="${param.age >= 4 }">
-		<h1>영화 '토이스토리' 추천</h1>
-	</c:when>
-	<c:otherwise>n
-		<h1 class="text-warning">적절한 나이를 입력해주세요</h1>
-	</c:otherwise>
-</c:choose>
+	<h1>application init parameter</h1>
+	<%
+	String value = application.getInitParameter("initParamName1");
+	%>
+	
+	<p><%= value %></p>
+	
+	<p>${initParam.initParamName1 }</p>
+	1:59:39
 </body>
 </html>
