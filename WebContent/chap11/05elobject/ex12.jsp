@@ -14,14 +14,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>application init parameter</h1>
 	<%
-	String value = application.getInitParameter("initParamName1");
+	pageContext.setAttribute("attr1", "value1");
+	request.setAttribute("attr2", "value2");
+	session.setAttribute("attr3", "value3");
+	application.setAttribute("attr4", "value4");
+	
+	
+	pageContext.setAttribute("attr5", "page value");
+	request.setAttribute("attr5", "request value");
+	session.setAttribute("attr5", "session value");
+	application.setAttribute("attr5", "app value");
 	%>
 	
-	<p><%= value %></p>
+	<p>${attr1 }</p>
+	<p>${pageScope.attr1 }</p>
+	<p>${attr2 }</p>
+	<p>${requestScope.attr2 }</p>
+	<p>${attr3 }</p>
+	<p>${sessionScope.attr3 }</p>
+	<p>${attr4 }</p>
+	<p>${applicationScope.attr4 }</p>
 	
-	<p>${initParam.initParamName1 }</p>
+	<hr /> 
 	
+	<p>${attr5 }</p> <%-- page value  --%>
+	<p>${requestScope.attr5 }</p>
+	<p>${sessionScope.attr5 }</p>
+	<p>${applicationScope.attr5 }</p>
 </body>
 </html>

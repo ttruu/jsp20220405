@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
+<%@ page import="chap11.*" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
@@ -14,14 +15,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>application init parameter</h1>
+	<h1>pageScope, requestScope, sseionScope, applicationScope : el 객체</h1>
+	<h1>Map &lt; String, Object&gt; 타입</h1>
+	
+	<p>각 영역의 attribute를 맵의 엔트리로 가지고 있음</p>
+	
 	<%
-	String value = application.getInitParameter("initParamName1");
+	pageContext.setAttribute("pageAttr1", "pageValue1");
+	pageContext.setAttribute("pageAttr2", new Car("volvo", 7000));
+	pageContext.setAttribute("my car", new Car("benz", 8000));
 	%>
 	
-	<p><%= value %></p>
-	
-	<p>${initParam.initParamName1 }</p>
-	
+	<p>${pageAttr1 }</p>
+	<p>${pageScope.pageAttr1 }</p>
+	<p>${pageAttr2.model }</p>
+	<p>${pageAttr2.price }</p>
+	<p>${pageScope.pageAttr2.model }</p>
+	<p>${pageScope.pageAttr2.price }</p>
+	<p>${pageScope["my car"].model }</p>
+	<p>${pageScope["my car"].price }</p>
 </body>
 </html>
+
+
+
+
