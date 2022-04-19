@@ -1,8 +1,6 @@
-package chap17.servelet1;
+package chap17.servlet1;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet06
+ * Servlet implementation class Servlet02
  */
-@WebServlet("/servlet1/Servlet06")
-public class Servlet06 extends HttpServlet {
+@WebServlet("/servlet1/Servlet02")
+public class Servlet02 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet06() {
+    public Servlet02() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +26,7 @@ public class Servlet06 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("myName", "thor");
-		
-		String path = "/chap17/ex02.jsp";
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
+		System.out.println("servlet02 doget method 실행 !");
 	}
 
 	/**

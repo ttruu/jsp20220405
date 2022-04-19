@@ -1,4 +1,4 @@
-package chap17.servelet1;
+package chap17.servlet1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet03
+ * Servlet implementation class Servlet04
  */
-@WebServlet("/servlet1/Servlet03")
-public class Servlet03 extends HttpServlet {
+@WebServlet("/servlet1/Servlet04")
+public class Servlet04 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet03() {
+    public Servlet04() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,10 +28,12 @@ public class Servlet03 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("servlet03 doget method 실행 !!!!!!!!! ");
+		System.out.println("servlet04 doget 메소드 실행");
 		
 		PrintWriter out = response.getWriter();
-		out.print("hello servlet");
+		out.print("<body>");
+		out.print("<h1>hello servlet!!</h1>");
+		out.print("</body>");
 	}
 
 	/**

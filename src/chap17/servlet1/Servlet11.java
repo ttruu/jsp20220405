@@ -1,6 +1,9 @@
-package chap17.servelet2;
+package chap17.servlet1;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class S2Servlet03
+ * Servlet implementation class Servlet11
  */
-@WebServlet("/S2Servlet03")
-public class S2Servlet03 extends HttpServlet {
+@WebServlet("/Servlet11")
+public class Servlet11 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public S2Servlet03() {
+    public Servlet11() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,23 +29,24 @@ public class S2Servlet03 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		List<String> names = new ArrayList<>();
+		names.add("spring");
+		names.add("summer");
+		names.add("fall");
+		names.add("winter");
+		
+		request.setAttribute("seasons", names);
+		
+		String path = "/WEB-INF/view/chap17/ex04.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		String email = request.getParameter("email");
-		String address = request.getParameter("address");
-		String ageStr = request.getParameter("age");
-		
-		System.out.println(email);
-		System.out.println(address);
-		System.out.println(ageStr);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

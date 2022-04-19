@@ -1,9 +1,6 @@
-package chap17.servelet1;
+package chap17.servlet2;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet11
+ * Servlet implementation class S2Servlet01
  */
-@WebServlet("/servlet1/Servlet11")
-public class Servlet11 extends HttpServlet {
+@WebServlet("/S2Servlet01")
+public class S2Servlet01 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet11() {
+    public S2Servlet01() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,24 +26,16 @@ public class Servlet11 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<String> names = new ArrayList<>();
-		names.add("spring");
-		names.add("summer");
-		names.add("fall");
-		names.add("winter");
-		
-		request.setAttribute("seasons", names);
-		
-		String path = "/WEB-INF/view/chap17/ex04.jsp";
-		request.getRequestDispatcher(path).forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		System.out.println("s2servlet01 dopost 메소드 실행");
 	}
 
 }

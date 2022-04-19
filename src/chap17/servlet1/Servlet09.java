@@ -1,4 +1,4 @@
-package chap17.servelet2;
+package chap17.servlet1;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class S2Servlet01
+ * Servlet implementation class Servlet09
  */
-@WebServlet("/S2Servlet01")
-public class S2Servlet01 extends HttpServlet {
+@WebServlet("/servlet1/Servlet09")
+public class Servlet09 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public S2Servlet01() {
+    public Servlet09() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +26,19 @@ public class S2Servlet01 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		String path = "/WEB-INF/view/chap17/ex02.jsp";
+		request.setAttribute("name", "thor");
+		request.setAttribute("address", "korea");
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("s2servlet01 dopost 메소드 실행");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

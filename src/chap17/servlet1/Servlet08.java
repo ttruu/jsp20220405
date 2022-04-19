@@ -1,4 +1,4 @@
-package chap17.servelet1;
+package chap17.servlet1;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servelet01
+ * Servlet implementation class Servlet08
  */
-@WebServlet("/servlet1/Servelet01")
-public class Servelet01 extends HttpServlet {
+@WebServlet("/servlet1/Servlet08")
+public class Servlet08 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servelet01() {
+    public Servlet08() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,9 @@ public class Servelet01 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("servlet01 doget 메소드 실행됨... ");
+		String path = "/WEB-INF/view/chap17/ex01.jsp";
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**

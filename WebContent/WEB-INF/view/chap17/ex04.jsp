@@ -13,8 +13,10 @@
 </head>
 <body>
 	<h1>attribute 꺼내기</h1>
+	<ul>
 	<c:forEach items="${seasons }" var="i">
 		<li>${i }</li>
 	</c:forEach>
+	</ul>
 </body>
 </html>

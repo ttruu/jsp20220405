@@ -1,25 +1,28 @@
-package chap17.servelet1;
+package chap17.servlet1;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import chap11.Car;
+
 /**
- * Servlet implementation class Servlet05
+ * Servlet implementation class Servlet12
  */
-@WebServlet("/servlet1/Servlet05")
-public class Servlet05 extends HttpServlet {
+@WebServlet("/servlet1/Servlet12")
+public class Servlet12 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet05() {
+    public Servlet12() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,14 +31,16 @@ public class Servlet05 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("servlet05 doget 메소드 실행!");
+		List<Car> list = new ArrayList<>();
+		list.add(new Car("hyundai", 1000));
+		list.add(new Car("volvo", 2000));
+		list.add(new Car("benz", 3000));
+		list.add(new Car("kia", 1500));
 		
-		// chap17/ex01.jsp로 포워드
-		String path = "/chap17/ex01.jsp";
+		request.setAttribute("carModel", list);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
-		
+		String view = "/WEB-INF/view/chap17/ex05.jsp";
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

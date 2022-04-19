@@ -12,35 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%-- table.table>thead>th*2^^tbody>th>td*4 --%>
-	<table class="table">
-		<thead>
-		<tr>
-			<th>model</th>
-			<th>price</th>
-		</tr>
-		</thead>
-	</table>
-	<tbody>
-			
-		<c:forEach items="${carModel }" var="car" varStatus="">
-			<tr>
-				<td>
-				
-				</td>
-				<td>
-					${car.model }
-				</td>
-				<td>
-					${car.price }
-				</td>
-			</tr>
-		</c:forEach>
+	<%-- table.table>thead>tr>th*3^^tbody --%>
 	
-	</tbody>
-	
-	
-<%-- 		<!-- table.table>thead>tr>th*3^^tbody -->
 	<table class="table">
 		<thead>
 			<tr>
@@ -50,21 +23,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${cars }" var="car" varStatus="status">
-				<tr>
-					<td>
-					${status.count }
-					</td>
-					<td>
-					${car.model }
-					</td>
-					<td>
-					${car.price }
-					</td>
-				</tr>
+			<c:forEach items="${carModel }" var="car" varStatus="status"> 
+		<tr>
+			<td>
+			${status.count }
+			</td>
+			<td>
+			${car.model }
+			</td>
+			<td>
+			${car.price }
+			</td>
+		</tr>
 			</c:forEach>
-		
 		</tbody>
-	</table> --%>
+	</table>
+	
 </body>
 </html>

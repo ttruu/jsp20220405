@@ -1,4 +1,4 @@
-package chap17.servelet1;
+package chap17.servlet2;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet02
+ * Servlet implementation class S2Servlet02
  */
-@WebServlet("/servlet1/Servlet02")
-public class Servlet02 extends HttpServlet {
+@WebServlet("/S2Servlet02")
+public class S2Servlet02 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet02() {
+    public S2Servlet02() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +26,21 @@ public class Servlet02 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("servlet02 doget method 실행 !");
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		
+		System.out.println("id: "+id);
+		System.out.println("pw: "+pw);
+		System.out.println("servlet2 doPost 메소드 일함");
 	}
 
 }

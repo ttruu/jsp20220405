@@ -14,10 +14,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${myCar.model }</h1>
-	<h1>${myCar.price }</h1>
+	<h1>${myCar.model }, ${myCar.price }</h1>
 	
-	<h1>${yourCar.model }</h1>	
-	<h1>${yourCar.price }</h1>
+	<h1>${yourCar.model }, ${yourCar.price }</h1>
 </body>
 </html>
