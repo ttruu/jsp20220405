@@ -1,14 +1,17 @@
 package chap14;
 
 import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 /**
  * Servlet implementation class S14Servlet01
@@ -30,17 +33,38 @@ public class S14Servlet01 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ServletContext application = getServletContext();
+		List<String> cities = new ArrayList<>();
+		
 		// database에서 records 가져오기
 		// 1. 연결설정
-		// 2. statement 객체 생성
-		// 3. 쿼리 실행
-		// 4. 실행결과 정제
+		DataSource ds = (DataSource) application.getAttribute("dbpool");
+
+		String sql = "SELECT DISTINCT city FROM Customers";
+		
+		try (
+			Connection con = ds.getConnection();
+			// 2. statement 객체 생성
+			Statement stmt = con.createStatement();
+			// 3. 쿼리 실행
+			ResultSet rs = stmt.executeQuery(sql);) {
+			
+			// 4. 실행결과 정제
+			while (rs.next()) {
+				String city = rs.getString(1);
+//				System.out.println(city);
+				cities.add(city);
+			}
+		}	catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 		// 5. 자원닫기
+//		rs.close();
+//		stmt.close();
+//		con.close();
 		
-		
-		
-		
-		
+
 		/*
 		// database에서 records 가져오기
 		List<String> cities = new ArrayList<>();
@@ -56,7 +80,6 @@ public class S14Servlet01 extends HttpServlet {
 		String location = "/WEB-INF/view/chap14/ex01.jsp";
 		request.getRequestDispatcher(location).forward(request, response);
 		
-		System.out.println("");
 	}
 
 	/**
