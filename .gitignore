@@ -6,3 +6,4 @@ WebContent/META-INF/MANIFEST.MF
 /bin/
 *.jar
 *.xml
+*.properties
