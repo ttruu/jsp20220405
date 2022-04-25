@@ -22,7 +22,7 @@
   
   <context-param>
   <param-name>adminEmail</param-name>
-  <param-value>admin1234@gmail.com</param-value>
+  <param-value>admin1234@gmail.cooom</param-value>
   </context-param>
   <!-- 서블릿 설정 -->
   <servlet>
