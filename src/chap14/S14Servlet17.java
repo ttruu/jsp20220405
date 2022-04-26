@@ -87,7 +87,7 @@ public class S14Servlet17 extends HttpServlet {
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 		
-			pstmt.setString(1, id);
+			pstmt.setInt(1, Integer.parseInt(id));
 		
 			result = pstmt.executeUpdate();
 

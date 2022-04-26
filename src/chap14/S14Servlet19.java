@@ -41,11 +41,12 @@ public class S14Servlet19 extends HttpServlet {
 				+ "FROM Customers "
 				+ "ORDER BY CustomerID "
 				+ "LIMIT ?, 10";
-
+		// Employee 로 해보기
+		
 		
 		int total = getTotal();
 		
-		// 변하는 값 계산 (페이지 시작번호 구하는 값)
+		// 변하는 값 계산 (페이지 시작번호 구하는 값부터 ~~~~ )
 		String pageNumStr = request.getParameter("page");
 		
 		if (pageNumStr == null || pageNumStr.trim().equals("")) {
@@ -87,6 +88,7 @@ public class S14Servlet19 extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		request.setAttribute("customerList", list);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
