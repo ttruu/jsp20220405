@@ -20,16 +20,16 @@ import chap14.JavaBeans.Customer;
 import chap14.JavaBeans.Employee;
 
 /**
- * Servlet implementation class S14Servlet99
+ * Servlet implementation class S14Servlet18
  */
-@WebServlet("/S14Servlet99")
-public class S14Servlet99 extends HttpServlet {
+@WebServlet("/S14Servlet18")
+public class S14Servlet18 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public S14Servlet99() {
+    public S14Servlet18() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,78 +38,75 @@ public class S14Servlet99 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String id = request.getParameter("id");
-		
-		if(id != null) {
-			
-		
-		String sql = "SELECT EmployeeID, LastName, FirstName, BirthDate, Photo, Notes "
-				+ "FROM Employees "
-				+ "WHERE EmployeeID = ?";
+		String sql = "SELECT CustomerID, CustomerName, City, Country, PostalCode "
+				+ "FROM Customers "
+				+ "ORDER BY CustomerID";
 		
 		ServletContext application = getServletContext();
-		DataSource ds = (DataSource) application.getAttribute("dbpool");
+		DataSource ds = (DataSource)application.getAttribute("dbpool");
+		
+		List<Customer> list = new ArrayList<>();
 		
 		try (Connection con = ds.getConnection();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)){
-			while(rs.next()) {
-				Employee emp = new Employee();
-				
-				emp.setId(rs.getInt(1));
-				emp.setLastName(rs.getString(2));
-				emp.setFirstName(rs.getString(3));
-				emp.setBirthDate(rs.getString(4));
-				emp.setPhoto(rs.getString(5));
-				emp.setNotes(rs.getString(6));
-				
-				
-			}
 			
-		} catch (Exception e) {
-			// TODO: handle exception
+		while(rs.next()) {
+			Customer cum = new Customer();
+			
+			cum.setId(rs.getInt(1));
+			cum.setName(rs.getString(2));
+			cum.setCity(rs.getString(3));
+			cum.setCountry(rs.getString(4));
+			cum.setPostCode(rs.getString(5));
+			
+			list.add(cum);
+			
 		}
-	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("customerList", list);
+		
+		String path = "WEB-INF/view/chap14/ex12.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sql = "INSERT INTO EmployeeS (LastName, FirstName, BirthDate, Photo, Notes) VALUES (?, ?, ?, ?, ?)";
+		String id = request.getParameter("id");
+		
+		String sql = "DELETE FROM Customers "
+				+ "WHERE CustomerID = ?";
 		
 		ServletContext application = getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
+		
 		int result = 0;
 		
 		try (Connection con = ds.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);
-				){
-			String lastName = request.getParameter("lastName");
-			String firstName = request.getParameter("firstName");
-			String birthDate = request.getParameter("birthDate");
-			String photo = request.getParameter("pic");
-			String notes = request.getParameter("notes");
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			
-			pstmt.setString(1, lastName);
-			pstmt.setString(2, firstName);
-			pstmt.setString(3, birthDate);
-			pstmt.setString(4, photo);
-			pstmt.setString(5, notes);
-			
-			result = pstmt.executeUpdate();
+		pstmt.setInt(1, Integer.parseInt(id));
+		
+		result = pstmt.executeUpdate();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		String path = "S14Servlet15";
+		}	
+		
+		String location = "S14Servlet18";
 		
 		if(result == 1) {
-			path += "?success=true";
+			location += "?success=true";
 		} else {
-			path += "?success=false";
+			location += "?success=false";
 		}
-		response.sendRedirect(path);
+		
+		response.sendRedirect(location);
 	}
 
 }
