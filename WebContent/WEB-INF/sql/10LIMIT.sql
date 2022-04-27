@@ -22,6 +22,9 @@ SELECT * FROM Employees ORDER BY BirthDate LIMIT 1, 1;
 -- 직원 중 두번째로 나이가 어린 사람 조회
 SELECT * FROM Employees ORDER BY BirthDate DESC LIMIT 1, 1;
 
+SELECT count(*) FROM Employees;
+INSERT INTO Employees (EmployeeID, LastName, FirstName, BirthDate, Photo, Notes)
+(SELECT EmployeeID, LastName, FirstName, BirthDate, Photo, Notes FROM Employees);
 
 SELECT count(*) FROM Customers;
 INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)

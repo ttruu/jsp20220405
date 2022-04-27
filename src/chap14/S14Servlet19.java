@@ -41,7 +41,7 @@ public class S14Servlet19 extends HttpServlet {
 				+ "FROM Customers "
 				+ "ORDER BY CustomerID "
 				+ "LIMIT ?, 10";
-		// Employee 로 해보기
+		
 		
 		
 		int total = getTotal();
