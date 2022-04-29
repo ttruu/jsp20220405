@@ -15,5 +15,6 @@
 </head>
 <body>
 	<h1>WEB-INF 폴더 안에 있는 ex01 jsp</h1>
+	<h1>${true ? 'active' : '' }</h1>
 </body>
 </html>
