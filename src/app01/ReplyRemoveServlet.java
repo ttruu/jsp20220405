@@ -11,21 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import app01.dao.BoardDao;
-import app01.dto.BoardDto;
+import app01.dao.ReplyDao;
 
 /**
- * Servlet implementation class BoardModifyServlet
+ * Servlet implementation class ReplyRemoveServlet
  */
-@WebServlet("/board/modify")
-public class BoardModifyServlet extends HttpServlet {
+@WebServlet("/reply/delete")
+public class ReplyRemoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataSource ds; 
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardModifyServlet() {
+    public ReplyRemoveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,6 +34,7 @@ public class BoardModifyServlet extends HttpServlet {
     	ServletContext application = getServletContext();
     	this.ds = (DataSource) application.getAttribute("dbpool");
     }
+    
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,38 +48,24 @@ public class BoardModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// request parameter 가공
-		String title = request.getParameter("title");
-		String body = request.getParameter("body");
-		
-		// 몇번 게시물 수정할건지?? 
+		// request parameter 수집/가공
 		String idStr = request.getParameter("id");
 		int id = Integer.parseInt(idStr);
 		
-		BoardDto board = new BoardDto();
-		board.setId(id);
-		board.setTitle(title);
-		board.setBody(body);
+		String boardId = request.getParameter("boardId");
 		
-		// 비지니스 로직 처리
-		BoardDao dao = new BoardDao();
+		// 비즈니스 로직 실행(DAO 일 시키기)
+		ReplyDao dao = new ReplyDao();
+		
 		boolean success = false;
-		try(Connection con = ds.getConnection()) {
-			success = dao.modify(con, board);
-			
+		try (Connection con = ds.getConnection()) {
+			success = dao.delete(con, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 결과 attribute 넣고
-		
 		// forward / redirect
-		String location = request.getContextPath() + "/board/get?id=" + id;
-		if(success) {
-			location += "&success=true";
-		} else {
-			location += "&success=false";
-		}
 		
+		String location = request.getContextPath() + "/board/get?id=" + boardId;
 		response.sendRedirect(location);
 	}
 

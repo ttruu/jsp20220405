@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import app01.dao.BoardDao;
-import app01.dto.BoardDto;
+import app01.dao.ReplyDao;
+import app01.dto.ReplyDto;
 
 /**
- * Servlet implementation class BoardModifyServlet
+ * Servlet implementation class ReplyInsertServlet
  */
-@WebServlet("/board/modify")
-public class BoardModifyServlet extends HttpServlet {
+@WebServlet("/reply/insert")
+public class ReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataSource ds; 
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardModifyServlet() {
+    public ReplyInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,38 +48,36 @@ public class BoardModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// request parameter 가공
-		String title = request.getParameter("title");
-		String body = request.getParameter("body");
 		
-		// 몇번 게시물 수정할건지?? 
-		String idStr = request.getParameter("id");
-		int id = Integer.parseInt(idStr);
+		// request parameter 수집/가공
+		String content = request.getParameter("replyContent");
+		String boardId = request.getParameter("boardId");
 		
-		BoardDto board = new BoardDto();
-		board.setId(id);
-		board.setTitle(title);
-		board.setBody(body);
+		ReplyDto replyDto = new ReplyDto();
+		replyDto.setContent(content);
+		replyDto.setBoardId(Integer.parseInt(boardId));
 		
-		// 비지니스 로직 처리
-		BoardDao dao = new BoardDao();
-		boolean success = false;
-		try(Connection con = ds.getConnection()) {
-			success = dao.modify(con, board);
+		// bussiness logic 처리
+		ReplyDao dao = new ReplyDao();
+		boolean success = false; 
+				
+		try (Connection con = ds.getConnection()) {
+			
+			success = dao.insert(con, replyDto);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 결과 attribute 넣고
+		// 결과 셋팅
+		String location = request.getContextPath() + "/board/get?id=" + replyDto.getBoardId();
 		
-		// forward / redirect
-		String location = request.getContextPath() + "/board/get?id=" + id;
 		if(success) {
-			location += "&success=true";
+			location += "&rs=true";
 		} else {
-			location += "&success=false";
+			location += "&rs=false";
 		}
 		
+		// forward / redirect
 		response.sendRedirect(location);
 	}
 

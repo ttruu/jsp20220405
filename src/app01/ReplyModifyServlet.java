@@ -11,31 +11,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import app01.dao.BoardDao;
-import app01.dto.BoardDto;
+import app01.dao.ReplyDao;
+import app01.dto.ReplyDto;
 
 /**
- * Servlet implementation class BoardModifyServlet
+ * Servlet implementation class ReplyModifyServlet
  */
-@WebServlet("/board/modify")
-public class BoardModifyServlet extends HttpServlet {
+@WebServlet("/reply/modify")
+public class ReplyModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataSource ds; 
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardModifyServlet() {
+    public ReplyModifyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
     @Override
     public void init() throws ServletException {
     	ServletContext application = getServletContext();
     	this.ds = (DataSource) application.getAttribute("dbpool");
     }
-    
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -48,38 +48,32 @@ public class BoardModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// request parameter 가공
-		String title = request.getParameter("title");
-		String body = request.getParameter("body");
+		// request parameter 수집/가공
+		String boardIdStr = request.getParameter("boardId"); // jsp에 추가
+		String replyIdStr = request.getParameter("replyId");
+		String content = request.getParameter("replyContent");
 		
-		// 몇번 게시물 수정할건지?? 
-		String idStr = request.getParameter("id");
-		int id = Integer.parseInt(idStr);
 		
-		BoardDto board = new BoardDto();
-		board.setId(id);
-		board.setTitle(title);
-		board.setBody(body);
+		ReplyDto dto = new ReplyDto();
+		dto.setBoardId(Integer.parseInt(boardIdStr));
+		dto.setId(Integer.parseInt(replyIdStr));
+		dto.setContent(content);
 		
-		// 비지니스 로직 처리
-		BoardDao dao = new BoardDao();
-		boolean success = false;
+		// 비즈니스 로직 실행(DAO 일 시키기)
+		ReplyDao dao = new ReplyDao();
+		
 		try(Connection con = ds.getConnection()) {
-			success = dao.modify(con, board);
+			
+			dao.update(con, dto);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 결과 attribute 넣고
 		
+		// 결과 셋팅
+		// 안해도 됨
 		// forward / redirect
-		String location = request.getContextPath() + "/board/get?id=" + id;
-		if(success) {
-			location += "&success=true";
-		} else {
-			location += "&success=false";
-		}
-		
+		String location = request.getContextPath() + "/board/get" + "?" + "id=" + boardIdStr;
 		response.sendRedirect(location);
 	}
 
