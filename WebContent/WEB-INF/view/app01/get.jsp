@@ -146,6 +146,8 @@
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col">
+			<h3>댓글 ${board.numOfReply }개</h3>
+			
 				<ul class="list-group">
 					<c:forEach items="${replyList }" var="reply">
 						<li class="list-group-item">
@@ -160,12 +162,14 @@
 									data-reply-id="${reply.id }">
 									<i class="fa-solid fa-pen-to-square"></i>
 								</button>
+								
 								<!-- 댓글지우기 -->
 								<button class="reply-delete-button" data-reply-id="${reply.id }">
 								<i class="fa-solid fa-trash-can"></i></button>
 							</div>
 
 							<div id="replyEditFormContainer${reply.id }" style="display: none;">
+							
 								<!-- 댓글 수정 폼 -->
 								<form action="${appRoot }/reply/modify" method="post">
 									<div class="input-group">
