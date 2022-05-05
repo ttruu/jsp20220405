@@ -55,8 +55,7 @@ GROUP BY c.CustomerID;
 -- 1996년 직원별 처리한 주문 총 금액을 조회 (금액이 높은 -> 낮은)
 SELECT * FROM Orders WHERE OrderDate BETWEEN '1996-01-01' AND '1996-12-31';
 SELECT COUNT(*) FROM Orders;
--- product orderdetails, products
--- 풀어보자
+-- orderdetails, orderdetails, products
 SELECT CONCAT(e.FirstName, ' ', e.LastName) Name, SUM(p.Price * d.Quantity) total
 FROM Employees e JOIN Orders o ON e.EmployeeID = o.EmployeeID
                  JOIN OrderDetails d ON d.OrderID = o.OrderID
@@ -69,10 +68,6 @@ ORDER BY 2 DESC
 
 -- 카테고리별 판매수량 (높-낮) 전체기간
 -- Categories, OrderDetails, Products
-DESC Categories;
-DESC OrderDetails;
-DESC Products;
-DESC Orders;
 SELECT c.CategoryID, c.CategoryName, sum(d.Quantity) Total
 FROM Categories c JOIN Products p ON c.CategoryID = p.CategoryID
 				  JOIN OrderDetails d ON p.ProductID = d.ProductID
@@ -81,6 +76,7 @@ ORDER BY 3 DESC;
 
 
 -- '1996년 7월'
+-- 다시 여쭤보기
 SELECT c.CategoryID, c.CategoryName, SUM(IFNULL(d.Quantity, 0)) Total
 FROM Orders o JOIN OrderDetails d ON d.OrderID = o.OrderID
 							          AND o.OrderDate BETWEEN '1996-08-01' AND '1996-08-07'
