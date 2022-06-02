@@ -181,10 +181,7 @@
 										</button>
 									</div>
 								</form>
-							</div>
-							
-							
-							
+							</div>							
 						</li>
 					</c:forEach>
 				</ul>

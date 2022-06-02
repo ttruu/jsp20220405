@@ -76,7 +76,6 @@ ORDER BY 3 DESC;
 
 
 -- '1996년 7월'
--- 다시 여쭤보기
 SELECT c.CategoryID, c.CategoryName, SUM(IFNULL(d.Quantity, 0)) Total
 FROM Orders o JOIN OrderDetails d ON d.OrderID = o.OrderID
 							          AND o.OrderDate BETWEEN '1996-08-01' AND '1996-08-07'
